@@ -1,0 +1,12 @@
+{
+  "name": "vouch-this-art",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "clean": "rm -f bun.lockb"
+  },
+  "dependencies": {
+    "hono": "^4.6.3"
+  }
+}

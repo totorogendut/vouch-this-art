@@ -1,0 +1,5 @@
+vouch-art-anchor {
+  position: absolute;
+  top: calc(anchor(var(--position-anchor-name) bottom) - 3rem);
+  left: calc(anchor(var(--position-anchor-name) left) + 0.75rem);
+}

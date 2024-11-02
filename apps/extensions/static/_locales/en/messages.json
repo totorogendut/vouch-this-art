@@ -1,0 +1,8 @@
+{
+  "APPNAME": {
+    "message": "Vouch This Art"
+  },
+  "APPDESC": {
+    "message": "Vouch media files such as images, audios, videos, hosted on the internet by pinning them to IPFS along with Proof of Person of yourself."
+  }
+}
