@@ -81,7 +81,7 @@
 			display: grid;
 			gap: 0 8px;
 			grid-template-columns: 48px 1fr;
-			grid-template-rows: 1fr 1fr;
+			grid-template-rows: 20px 1fr;
 			grid-template-areas: "avatar username" "avatar message";
 			overflow: hidden;
 			// box-shadow:

@@ -49,7 +49,7 @@
 		gap: 12px;
 		// font-family: Verdana, Geneva, Tahoma, sans-serif;
 		font-size: 14px;
-		align-items: center;
+		align-items: start;
 		flex-wrap: wrap;
 	}
 </style>
