@@ -10,5 +10,7 @@
 	<body>
 		<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Everest%2C_Nepal%2C_Himalayas.jpg/800px-Everest%2C_Nepal%2C_Himalayas.jpg" alt="">
 		<script type="module" src="src/entry.ts"></script>
+		<p>Vouch This Art is a web chrome extension that "Vouch" image, giving users the ability to interact with images that's hosted anywhere in the web, whether in the form of simple like or leaving a message about the image that can be read by other users of the extension. Unlike normal like and comments with messages, "vouch" is a kind of interaction from the users that is more persistent and durable, as it stored on Pinata network. Vouch This Art also stores Proof of Personhood when vouching images to Pinata server, which later can be used to verify the uploaded vouchs... although, verifying capability is currently disabled due to this extension has not yet implemented a proper auth mechanism.</p>
+		<p>Under the hood Vouch This Art uses Pinata as storage backend to store metadata regarding the image and the users. Images on the web pages first processed to get their hash inside web workers, so Vouch This Art can function across web domains. In the Pinata backend, metadata then will be stored in the kayvalues with both the image hash and user's id, as well as the full user credentials and other necessary informations as the JSON file body.</p>
 	</body>
 </html>

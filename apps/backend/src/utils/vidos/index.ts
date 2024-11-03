@@ -1,14 +1,16 @@
 import "dotenv/config";
-import type { User } from "../../../app";
+import type { UserCredential } from "../../../app";
 
 interface VerifyResult {
 	checks: string[];
 	warnings?: string[];
 	errors?: string[];
-	credential: User;
+	credential: UserCredential;
 }
 
-export async function verifyCredential(subject: User): Promise<boolean> {
+export async function verifyCredentialWithVidos(
+	subject: UserCredential,
+): Promise<boolean> {
 	const res = await fetch(
 		`https://${import.meta.env.VIDOS_VERIFIER_ENDPOINT}/w3c-ccg/vc-api/v0.0.3/credentials/verify`,
 		{

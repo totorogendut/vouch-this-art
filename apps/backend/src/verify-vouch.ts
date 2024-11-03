@@ -5,6 +5,10 @@ import { verifyUserCredential } from "./utils/users";
 
 interface VouchJSONData extends JSON, VouchUploadJSONBody {}
 
+/**
+ * Currently will failed due to no proper auth mechanism
+ * implemented yet.
+ */
 app.get("/verify-vouch/:cid", async (c) => {
 	const { pinata } = ctxSetup(c);
 	const { cid } = c.req.param();
@@ -20,7 +24,7 @@ app.get("/verify-vouch/:cid", async (c) => {
 
 		const { ok, message } = await verifyUserCredential(userCredential);
 		if (ok) return c.text("verify success", 200);
-		return c.text(`verify failed: ${message}`, 503);
+		return c.text(message || `verify failed: ${message}`, 503);
 	} catch (error) {
 		return c.text(`something wrong: ${error}`, 500);
 	}

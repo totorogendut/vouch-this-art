@@ -1,7 +1,7 @@
-import type { User } from "../../app";
-import { verifyCredential } from "./vidos";
+import type { UserCredential } from "../../app";
+import { verifyCredentialWithVidos } from "./vidos";
 
-export async function verifyUserCredential(user: User): Promise<{
+export async function verifyUserCredential(user: UserCredential): Promise<{
 	ok: boolean;
 	message: string;
 }> {
@@ -25,7 +25,7 @@ export async function verifyUserCredential(user: User): Promise<{
 	}
 
 	// TODO - check against issuers' server if required
-	const verified = await verifyCredential(user);
+	const verified = await verifyCredentialWithVidos(user);
 
 	if (!verified)
 		return { ok: false, message: "credential document verify invalid" };
