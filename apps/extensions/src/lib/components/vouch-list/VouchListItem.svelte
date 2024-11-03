@@ -88,6 +88,11 @@
 			// 	4px 4px 8px 12px #0001,
 			// 	4px 4px 4px 6px #0002;
 			// border: 2px solid #0006;
+
+			span {
+				line-height: 1.1;
+				margin-top: 4px;
+			}
 		}
 
 		.tooltip {

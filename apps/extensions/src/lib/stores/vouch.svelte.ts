@@ -23,7 +23,9 @@ class ActiveVouch {
 		this.vouchData = [];
 		this.notification = [];
 		this.isUploading = false;
-		controller.abort();
+
+		// TODO - fix possible race condition
+		// controller.abort();
 	}
 
 	async populateVouchData() {

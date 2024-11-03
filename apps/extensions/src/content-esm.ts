@@ -9,19 +9,19 @@ import PQueue from "p-queue";
 
 const viableImages = [];
 
-// const { getMD5HashFromImage } = wrap<typeof imagesWorker>(new Worker());
 const dialogEl = document.createElement("vouch-art-active-form");
+//@ts-ignore
 document.body.append(dialogEl);
 
 const workers = Array<Remote<typeof imagesWorker>>(
 	navigator.hardwareConcurrency,
 ).fill(wrap<typeof imagesWorker>(new Worker()));
+
 const queues = Array<PQueue>(navigator.hardwareConcurrency).fill(
 	new PQueue({ concurrency: 1 }),
 );
 
 let qIndex = 0;
-
 console.log(`Spawning ${workers?.length} workers for Vouch This Art`);
 
 async function setup() {
