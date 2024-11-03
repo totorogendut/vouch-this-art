@@ -21,13 +21,15 @@ VIDOS_VERIFIER_ENDPOINT=XXX
 VIDOS_API_KEY=XXX
 ```
 
+### Build
+
 Vouch This Art uses Bun for development. 
 
 ```
 cd apps/backend && bun start
 ```
 
-For the extension, run the command below and load the extension as unpacked in Chromium based browsers
+For the extension, run the command below and load `apps/extensions/build` folder as unpacked extension in Chromium based browsers
 
 ```
 cd apps/extensions && bun run build
