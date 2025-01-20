@@ -1,7 +1,8 @@
 import chalk from "chalk";
-import { app, ctxSetup, PinataLimiter } from "../_shared";
-import type { VouchUploadJSONBody } from "./upload";
+import { pinata, PinataLimiter } from "../_shared";
 import { verifyUserCredential } from "./utils/users";
+import type { VouchUploadJSONBody } from "../app";
+import { error, type Handler } from "elysia";
 
 interface VouchJSONData extends JSON, VouchUploadJSONBody {}
 
@@ -9,23 +10,22 @@ interface VouchJSONData extends JSON, VouchUploadJSONBody {}
  * Currently will failed due to no proper auth mechanism
  * implemented yet.
  */
-app.get("/verify-vouch/:cid", async (c) => {
-	const { pinata } = ctxSetup(c);
-	const { cid } = c.req.param();
+export const verifyVouch: Handler = async (c) => {
+  const { cid } = c.params;
 
-	console.log(chalk.bgMagenta.bold(" VERIFYING "), cid);
+  console.log(chalk.bgMagenta.bold(" VERIFYING "), cid);
 
-	try {
-		const { data } = await PinataLimiter.wrap(() => pinata.gateways.get(cid))();
-		if (!("userCredential" in (data as VouchJSONData)))
-			return c.text("wrong format", 504);
+  try {
+    const { data } = await PinataLimiter.wrap(() => pinata.gateways.get(cid))();
+    if (!("userCredential" in (data as VouchJSONData)))
+      return error(504, "wrong format");
 
-		const { userCredential } = data as VouchJSONData;
+    const { userCredential } = data as VouchJSONData;
 
-		const { ok, message } = await verifyUserCredential(userCredential);
-		if (ok) return c.text("verify success", 200);
-		return c.text(message || `verify failed: ${message}`, 503);
-	} catch (error) {
-		return c.text(`something wrong: ${error}`, 500);
-	}
-});
+    const { ok, message } = await verifyUserCredential(userCredential);
+    if (ok) return "verify successful";
+    return error(503, message || `verify failed: ${message}`);
+  } catch (err) {
+    return error(500, `something wrong: ${error}`);
+  }
+};

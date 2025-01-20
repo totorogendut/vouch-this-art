@@ -19,6 +19,7 @@
     "did-session": "^4.0.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.33.0",
+    "elysia": "^1.2.10",
     "ethr-did-resolver": "^11.0.1",
     "nanoid": "^5.0.7",
     "pinata": "^1.6.0",

@@ -1,16 +1,18 @@
-import { ctxSetup, PinataLimiter } from "../_shared";
-import { app } from "../_shared";
+import { error, type Handler } from "elysia";
+import { pinata, PinataLimiter } from "../_shared";
 
 // TODO
-app.get("/user/:id", async (c) => {
-	const userId: string = c.req.param("id");
-	const limit: number = Number.parseInt(c.req.query("limit") || "100");
-	if (!userId) return c.json({ message: "user id is not defined" }, 400);
-	const { pinata } = ctxSetup(c);
+export const vouchByUser: Handler = async (c) => {
+  const userId: string = c.params.id;
+  if (!userId) return error(400, "user id is not defined");
 
-	const result = await PinataLimiter.wrap(() =>
-		pinata.files.list().metadata({ userId }).limit(limit).order("DESC"),
-	)();
+  const result = await PinataLimiter.wrap(() =>
+    pinata.files
+      .list()
+      .metadata({ userId })
+      .limit(Number.parseInt(c.query.limit ?? "100"))
+      .order("DESC")
+  )();
 
-	return c.json(result.files, 200);
-});
+  return result.files;
+};
